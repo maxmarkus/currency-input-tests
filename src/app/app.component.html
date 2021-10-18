@@ -1,3 +1,16 @@
+<style>
+html, body {
+  font-family: Roboto, Helvetica, Arial;
+  font-size: 18px;
+}
+input {
+  font-size: 20px;
+  max-width: 90%;
+  padding: 5px;
+  margin: 10px auto;
+}
+</style>
+
 Paypal Style currency amount input:
 <form [formGroup]='form'>
   <input type="tel" currencyMask #amountInput formControlName="amount" [options]="{ prefix: '', thousands: '.', decimal: ',' }"/>
