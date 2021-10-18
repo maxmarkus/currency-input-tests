@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+  font-family: Roboto, Helvetica, Arial;
+  font-size: 18px;
+}
+input {
+  font-size: 20px;
+  max-width: 90%;
+  padding: 5px;
+  margin: 10px auto;
+}
