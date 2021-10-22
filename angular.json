@@ -34,7 +34,7 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "baseHref": "./"
+            "baseHref": "/currency-input-tests/"
           },
           "configurations": {
             "production": {

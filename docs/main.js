@@ -71,6 +71,21 @@ class AppComponent {
     ngAfterViewInit() {
         this.amountInput.nativeElement.focus();
     }
+    onInputClick() {
+        this.moveCursorToEnd(this.amountInput.nativeElement);
+    }
+    moveCursorToEnd(el) {
+        if (typeof el.selectionStart == "number") {
+            el.selectionStart = el.selectionEnd = el.value.length;
+        }
+        else if (typeof el.createTextRange != "undefined") {
+            el.focus();
+            var range = el.createTextRange();
+            range.collapse(false);
+            range.select();
+        }
+        console.log('moved curser to end?');
+    }
 }
 AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(); };
 AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], viewQuery: function AppComponent_Query(rf, ctx) { if (rf & 1) {
@@ -78,17 +93,21 @@ AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineCompo
     } if (rf & 2) {
         let _t;
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵloadQuery"]()) && (ctx.amountInput = _t.first);
-    } }, decls: 4, vars: 3, consts: [[3, "formGroup"], ["type", "tel", "currencyMask", "", "formControlName", "amount", 3, "options"], ["amountInput", ""]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](0, " Paypal Style currency amount input:\n");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "form", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](2, "input", 1, 2);
+    } }, decls: 5, vars: 3, consts: [[3, "formGroup"], ["aria-label", "Feld zur Eingabe des Betrags", "data-nemo", "amount", "dir", "ltr", "autocomplete", "off", "type", "tel", "name", "amount", "id", "fn-amount", "required", "", "currencyMask", "", "formControlName", "amount", 1, "ppaf-input", 3, "options", "click"], ["amountInput", ""]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1, "Paypal Style currency amount input:");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "form", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "input", 1, 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_Template_input_click_3_listener() { return ctx.onInputClick(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     } if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("formGroup", ctx.form);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("options", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](2, _c1));
-    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_forms_forms_ba"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormGroupDirective"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["DefaultValueAccessor"], ngx_currency__WEBPACK_IMPORTED_MODULE_2__["CurrencyMaskDirective"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormControlName"]], styles: ["html[_ngcontent-%COMP%], body[_ngcontent-%COMP%] {\n  font-family: Roboto, Helvetica, Arial;\n  font-size: 18px;\n}\ninput[_ngcontent-%COMP%] {\n  font-size: 20px;\n  max-width: 90%;\n  padding: 5px;\n  margin: 10px auto;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL2FwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSw4RUFBQTtBQUNBO0VBQ0UscUNBQUE7RUFDQSxlQUFBO0FBQ0Y7QUFDQTtFQUNFLGVBQUE7RUFDQSxjQUFBO0VBQ0EsWUFBQTtFQUNBLGlCQUFBO0FBRUYiLCJmaWxlIjoiYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogWW91IGNhbiBhZGQgZ2xvYmFsIHN0eWxlcyB0byB0aGlzIGZpbGUsIGFuZCBhbHNvIGltcG9ydCBvdGhlciBzdHlsZSBmaWxlcyAqL1xuaHRtbCwgYm9keSB7XG4gIGZvbnQtZmFtaWx5OiBSb2JvdG8sIEhlbHZldGljYSwgQXJpYWw7XG4gIGZvbnQtc2l6ZTogMThweDtcbn1cbmlucHV0IHtcbiAgZm9udC1zaXplOiAyMHB4O1xuICBtYXgtd2lkdGg6IDkwJTtcbiAgcGFkZGluZzogNXB4O1xuICBtYXJnaW46IDEwcHggYXV0bztcbn0iXX0= */", "html[_ngcontent-%COMP%], body[_ngcontent-%COMP%] {\n  font-family: Roboto, Helvetica, Arial;\n  font-size: 18px;\n}\ninput[_ngcontent-%COMP%] {\n  font-size: 20px;\n  max-width: 90%;\n  padding: 5px;\n  margin: 10px auto;\n}"] });
+    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_forms_forms_ba"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormGroupDirective"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["RequiredValidator"], ngx_currency__WEBPACK_IMPORTED_MODULE_2__["CurrencyMaskDirective"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormControlName"]], styles: [".ppaf-input[_ngcontent-%COMP%] {\n  text-overflow: clip;\n  outline: 0;\n  letter-spacing: normal;\n  text-transform: none;\n  background: 0 0;\n  border: none;\n  text-align: center;\n  padding: 0;\n  margin: 0;\n  cursor: pointer;\n  font-size: 20px;\n  line-height: 24px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL2FwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLG1CQUFBO0VBQ0EsVUFBQTtFQUNBLHNCQUFBO0VBQ0Esb0JBQUE7RUFDQSxlQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0VBQ0EsVUFBQTtFQUNBLFNBQUE7RUFDQSxlQUFBO0VBRUEsZUFBQTtFQUNBLGlCQUFBO0FBQUYiLCJmaWxlIjoiYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnBwYWYtaW5wdXQge1xuICB0ZXh0LW92ZXJmbG93OiBjbGlwO1xuICBvdXRsaW5lOiAwO1xuICBsZXR0ZXItc3BhY2luZzogbm9ybWFsO1xuICB0ZXh0LXRyYW5zZm9ybTogbm9uZTtcbiAgYmFja2dyb3VuZDogMCAwO1xuICBib3JkZXI6IG5vbmU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgcGFkZGluZzogMDtcbiAgbWFyZ2luOiAwO1xuICBjdXJzb3I6IHBvaW50ZXI7XG4gIFxuICBmb250LXNpemU6IDIwcHg7XG4gIGxpbmUtaGVpZ2h0OiAyNHB4O1xufVxuIl19 */", "html[_ngcontent-%COMP%], body[_ngcontent-%COMP%] {\n  font-family: Roboto, Helvetica, Arial;\n  font-size: 18px;\n}\ninput[_ngcontent-%COMP%] {\n  font-size: 20px;\n  max-width: 90%;\n  padding: 5px;\n  margin: 10px auto;\n}"] });
 
 
 /***/ }),

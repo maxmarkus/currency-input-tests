@@ -11,7 +11,7 @@ input {
 }
 </style>
 
-Paypal Style currency amount input:
+<p>Paypal Style currency amount input:</p>
 <form [formGroup]='form'>
-  <input type="tel" currencyMask #amountInput formControlName="amount" [options]="{ prefix: '', thousands: '.', decimal: ',' }"/>
+  <input aria-label="Feld zur Eingabe des Betrags" data-nemo="amount" dir="ltr" autocomplete="off" type="tel" name="amount" id="fn-amount" required class="ppaf-input" currencyMask #amountInput formControlName="amount" [options]="{ prefix: '', thousands: '.', decimal: ',' }" (click)="onInputClick()">
 </form>
